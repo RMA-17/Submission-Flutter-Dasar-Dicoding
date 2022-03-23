@@ -10,9 +10,9 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         if (constraints.maxWidth <= 800) {
-          return DetaiLPageMobile();
+          return const DetaiLPageMobile();
         } else {
-          return DetailPageTablet();
+          return const DetailPageTablet();
         }
       }),
     );

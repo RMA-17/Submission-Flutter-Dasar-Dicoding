@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:submission_flutter_dasar/content/news_content.dart';
+import 'package:submission_flutter_dasar/pages/details/detail_page.dart';
 import 'package:submission_flutter_dasar/widgets/widgets.dart';
 
 class HomePageMobile extends StatelessWidget {
@@ -60,10 +61,13 @@ class HomePageMobile extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(16),
-                                      child: Image.network(
-                                          'https://berita.teknologi.id/uploads/article/1624981261_Windows%2011%20Dapat%20Jalankan%20Applikasi%20Android%20Tanpa%20Emulator%20%28wallpaper%20cave%29.jpg'),
+                                    Hero(
+                                      tag: "header-gambar-berita",
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(16),
+                                        child: Image.network(
+                                            'https://berita.teknologi.id/uploads/article/1624981261_Windows%2011%20Dapat%20Jalankan%20Applikasi%20Android%20Tanpa%20Emulator%20%28wallpaper%20cave%29.jpg'),
+                                      ),
                                     ),
                                     const SizedBox(height: 6),
                                     Column(
@@ -73,13 +77,17 @@ class HomePageMobile extends StatelessWidget {
                                           child: Row(
                                             children: const [
                                               Expanded(
-                                                child: Text(
-                                                  "Windows 11 Dapat Jalankan Aplikasi Android Tanpa Emulator",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 15,
-                                                    fontFamily: 'Montserrat',
-                                                    color: Color(0xff1D2E5A),
+                                                child: Hero(
+                                                  tag: "txt-judul-berita",
+                                                  child: Text(
+                                                    "Windows 11 Dapat Jalankan Aplikasi Android Tanpa Emulator",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 15,
+                                                      fontFamily: 'Montserrat',
+                                                      color: Color(0xff1D2E5A),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -91,13 +99,21 @@ class HomePageMobile extends StatelessWidget {
                                           padding: EdgeInsets.symmetric(
                                             horizontal: 8.0,
                                           ),
-                                          child: ArticleBar(),
+                                          child: Hero(
+                                            tag: 'article-bar',
+                                            child: ArticleBar(),
+                                          ),
                                         )
                                       ],
                                     )
                                   ],
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return const DetailPage();
+                                  }));
+                                },
                               ),
                             ),
                           ),
@@ -115,6 +131,7 @@ class HomePageMobile extends StatelessWidget {
                       child: TabBar(
                         isScrollable: true,
                         labelColor: const Color(0xff1D2E5A),
+                        indicatorSize: TabBarIndicatorSize.label,
                         tabs: [for (final tab in tabs) Tab(text: tab)],
                       ),
                     ),
@@ -122,10 +139,22 @@ class HomePageMobile extends StatelessWidget {
                       height: 145,
                       child: TabBarView(
                         children: [
-                          MiniNewsBar(content: contentSport),
-                          MiniNewsBar(content: contentTech),
-                          MiniNewsBar(content: contentOtomotif),
-                          MiniNewsBar(content: contentLifestyle),
+                          InkWell(
+                            child: MiniNewsBar(content: contentSport),
+                            onTap: () {},
+                          ),
+                          InkWell(
+                            child: MiniNewsBar(content: contentTech),
+                            onTap: () {},
+                          ),
+                          InkWell(
+                            child: MiniNewsBar(content: contentOtomotif),
+                            onTap: () {},
+                          ),
+                          InkWell(
+                            child: MiniNewsBar(content: contentLifestyle),
+                            onTap: () {},
+                          ),
                         ],
                       ),
                     ),

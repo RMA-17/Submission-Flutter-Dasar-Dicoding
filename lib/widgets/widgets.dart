@@ -173,17 +173,24 @@ class FavouriteButton extends StatefulWidget {
 }
 
 class _FavouriteButtonState extends State<FavouriteButton> {
-  final bool _isChecked = false;
-  @override
+  bool _isChecked = true;
+
+  void setFavourite() {
+    setState(() {
+      _isChecked = !_isChecked;
+    });
+  }
+
+@override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          setState(() {
-            !_isChecked;
-          });
-        },
-        icon: _isChecked
-            ? Icon(CupertinoIcons.heart_fill)
-            : Icon(CupertinoIcons.heart));
+      onPressed: setFavourite,
+      icon: _isChecked
+          ? const Icon(
+              CupertinoIcons.heart_fill,
+              color: Colors.redAccent,
+            )
+          : const Icon(CupertinoIcons.heart),
+    );
   }
 }
