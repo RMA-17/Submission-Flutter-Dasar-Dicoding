@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:submission_flutter_dasar/widgets/bar.dart';
+import 'package:submission_flutter_dasar/content/news_content.dart';
+import 'package:submission_flutter_dasar/widgets/widgets.dart';
 
 class HomePageMobile extends StatelessWidget {
   const HomePageMobile({Key? key}) : super(key: key);
@@ -11,10 +11,17 @@ class HomePageMobile extends StatelessWidget {
     var timeNow = DateTime.now();
     var formattedDate = DateFormat('dd-MM-yyyy').format(timeNow);
 
-    return Column(children: [
-      SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
+    final tabs = ["Sports", "Tech", "Otomotif", "Lifestyle"];
+
+    final NewsContent contentSport = newsContentList[0];
+    final NewsContent contentTech = newsContentList[1];
+    final NewsContent contentOtomotif = newsContentList[2];
+    final NewsContent contentLifestyle = newsContentList[3];
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               TopAppBar(date: convertToMonthName(formattedDate)),
@@ -45,11 +52,11 @@ class HomePageMobile extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: InkWell(
-                              child: Card(
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(16))),
+                            child: Card(
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(16))),
+                              child: InkWell(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -90,10 +97,35 @@ class HomePageMobile extends StatelessWidget {
                                     )
                                   ],
                                 ),
+                                onTap: () {},
                               ),
-                              onTap: () {},
                             ),
                           ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              DefaultTabController(
+                length: 4,
+                child: Column(
+                  children: [
+                    Container(
+                      child: TabBar(
+                        isScrollable: true,
+                        labelColor: const Color(0xff1D2E5A),
+                        tabs: [for (final tab in tabs) Tab(text: tab)],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 145,
+                      child: TabBarView(
+                        children: [
+                          MiniNewsBar(content: contentSport),
+                          MiniNewsBar(content: contentTech),
+                          MiniNewsBar(content: contentOtomotif),
+                          MiniNewsBar(content: contentLifestyle),
                         ],
                       ),
                     ),
@@ -104,7 +136,7 @@ class HomePageMobile extends StatelessWidget {
           ),
         ),
       ),
-    ]);
+    );
   }
 }
 
