@@ -13,14 +13,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
-          colorSchemeSeed: seed,
           colorScheme: lightColorScheme,
         ),
         darkTheme: ThemeData(
-          colorSchemeSeed: seed,
           colorScheme: darkColorScheme,
         ),
         debugShowCheckedModeBanner: false,
         home: const HomePage());
   }
 }
+
+
+
+//Referensi Design: https://dribbble.com/shots/14905782-News-App-Design-UI-UX
+//Referensi Artikel: https://www.teknologi.id

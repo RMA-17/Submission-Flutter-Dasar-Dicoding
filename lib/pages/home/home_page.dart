@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:submission_flutter_dasar/pages/home/home_views.dart';
+import 'package:submission_flutter_dasar/pages/home/home_view_mobile.dart';
+import 'package:submission_flutter_dasar/pages/home/home_view_tablet.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
