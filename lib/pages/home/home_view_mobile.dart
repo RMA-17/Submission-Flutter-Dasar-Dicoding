@@ -128,8 +128,8 @@ class HomePageMobile extends StatelessWidget {
                                       MaterialPageRoute(builder: (context) {
                                     return DetailPage(
                                       content: contentTech,
-                                      imageKey: imageKeys[1],
-                                      titleKey: titleKeys[1],
+                                      imageKey: imageKeys[4],
+                                      titleKey: titleKeys[4],
                                     );
                                   }));
                                 },
