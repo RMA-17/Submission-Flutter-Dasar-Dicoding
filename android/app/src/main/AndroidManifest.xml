@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.submission_flutter_dasar">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="submission_flutter_dasar"
         android:name="${applicationName}"

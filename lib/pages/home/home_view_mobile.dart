@@ -14,6 +14,21 @@ class HomePageMobile extends StatelessWidget {
 
     final tabs = ["Sports", "Tech", "Otomotif", "Lifestyle"];
 
+    final imageKeys = [
+      'gambar-berita-sport',
+      'gambar-berita-tech',
+      'gambar-berita-otomotif',
+      'gambar-berita-lifestyle',
+      'gambar-berita-header',
+    ];
+    final titleKeys = [
+      'title-berita-sport',
+      'title-berita-tech',
+      'title-berita-otomotif',
+      'title-berita-lifestyle',
+      'title-berita-header',
+    ];
+
     final NewsContent contentSport = newsContentList[0];
     final NewsContent contentTech = newsContentList[1];
     final NewsContent contentOtomotif = newsContentList[2];
@@ -62,11 +77,12 @@ class HomePageMobile extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Hero(
-                                      tag: "header-gambar-berita",
+                                      tag: imageKeys[4],
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(16),
                                         child: Image.network(
-                                            'https://berita.teknologi.id/uploads/article/1624981261_Windows%2011%20Dapat%20Jalankan%20Applikasi%20Android%20Tanpa%20Emulator%20%28wallpaper%20cave%29.jpg'),
+                                          'https://berita.teknologi.id/uploads/article/1624981261_Windows%2011%20Dapat%20Jalankan%20Applikasi%20Android%20Tanpa%20Emulator%20%28wallpaper%20cave%29.jpg',
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(height: 6),
@@ -75,11 +91,11 @@ class HomePageMobile extends StatelessWidget {
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Row(
-                                            children: const [
+                                            children: [
                                               Expanded(
                                                 child: Hero(
-                                                  tag: "txt-judul-berita",
-                                                  child: Text(
+                                                  tag: titleKeys[4],
+                                                  child: const Text(
                                                     "Windows 11 Dapat Jalankan Aplikasi Android Tanpa Emulator",
                                                     style: TextStyle(
                                                       fontWeight:
@@ -95,13 +111,12 @@ class HomePageMobile extends StatelessWidget {
                                           ),
                                         ),
                                         const SizedBox(height: 4),
-                                        const Padding(
-                                          padding: EdgeInsets.symmetric(
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
                                             horizontal: 8.0,
                                           ),
-                                          child: Hero(
-                                            tag: 'article-bar',
-                                            child: ArticleBar(),
+                                          child: ArticleBar(
+                                            date: contentTech.newsDate,
                                           ),
                                         )
                                       ],
@@ -111,7 +126,11 @@ class HomePageMobile extends StatelessWidget {
                                 onTap: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return const DetailPage();
+                                    return DetailPage(
+                                      content: contentTech,
+                                      imageKey: imageKeys[1],
+                                      titleKey: titleKeys[1],
+                                    );
                                   }));
                                 },
                               ),
@@ -139,21 +158,25 @@ class HomePageMobile extends StatelessWidget {
                       height: 145,
                       child: TabBarView(
                         children: [
-                          InkWell(
-                            child: MiniNewsBar(content: contentSport),
-                            onTap: () {},
+                          MiniNewsBar(
+                            content: contentSport,
+                            imageKey: imageKeys[0],
+                            titleKey: titleKeys[0],
                           ),
-                          InkWell(
-                            child: MiniNewsBar(content: contentTech),
-                            onTap: () {},
+                          MiniNewsBar(
+                            content: contentTech,
+                            imageKey: imageKeys[1],
+                            titleKey: titleKeys[1],
                           ),
-                          InkWell(
-                            child: MiniNewsBar(content: contentOtomotif),
-                            onTap: () {},
+                          MiniNewsBar(
+                            content: contentOtomotif,
+                            imageKey: imageKeys[2],
+                            titleKey: titleKeys[2],
                           ),
-                          InkWell(
-                            child: MiniNewsBar(content: contentLifestyle),
-                            onTap: () {},
+                          MiniNewsBar(
+                            content: contentLifestyle,
+                            imageKey: imageKeys[3],
+                            titleKey: titleKeys[3],
                           ),
                         ],
                       ),

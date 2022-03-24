@@ -1,9 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:submission_flutter_dasar/content/news_content.dart';
 import 'package:submission_flutter_dasar/widgets/widgets.dart';
 
 class DetaiLPageMobile extends StatefulWidget {
-  const DetaiLPageMobile({Key? key}) : super(key: key);
+  final NewsContent content;
+  final String imageKey, titleKey;
+  const DetaiLPageMobile({
+    Key? key,
+    required this.content,
+    required this.imageKey,
+    required this.titleKey,
+  }) : super(key: key);
 
   @override
   State<DetaiLPageMobile> createState() => _DetaiLPageMobileState();
@@ -44,11 +52,10 @@ class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
                     child: Column(
                       children: [
                         Hero(
-                          tag: "header-gambar-berita",
+                          tag: widget.imageKey,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16),
-                            child: Image.network(
-                                'https://berita.teknologi.id/uploads/article/1624981261_Windows%2011%20Dapat%20Jalankan%20Applikasi%20Android%20Tanpa%20Emulator%20%28wallpaper%20cave%29.jpg'),
+                            child: Image.network(widget.content.imageUrl),
                           ),
                         ),
                       ],
@@ -58,13 +65,13 @@ class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      children: const [
+                      children: [
                         Expanded(
                           child: Hero(
-                            tag: "txt-judul-berita",
+                            tag: widget.titleKey,
                             child: Text(
-                              "Windows 11 Dapat Jalankan Aplikasi Android Tanpa Emulator",
-                              style: TextStyle(
+                              widget.content.newsTitle,
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                                 fontFamily: 'Montserrat',
@@ -76,23 +83,19 @@ class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
                       ],
                     ),
                   ),
-                  const Hero(tag: "article-bar", child: ArticleBar()),
+                  ArticleBar(
+                    date: widget.content.newsDate,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
                         Row(
-                          children: const [
+                          children: [
                             Expanded(
                               child: Text(
-                                """Microsoft sudah resmi memperkenalkan Windows 11 sebagai sistem operasi (OS) terbarunya untuk perangkat laptop dan PC. Ada berbagai keunggulan dan terobosan yang dihadirkan di Windows 11, salah satunya kemampuan menjalankan aplikasi Android tanpa bantuan emulator.
-
-      Untuk daoat membawa aplikasi Android ke Windows 11, Microsoft bekerja sama dengan Amazon AppStore. Toko aplikasi Amazon ini akan terintegrasi dengan Microsoft Store untuk memudahkan pengguna dalam mencari dan mendownload aplikasi Android.
-
-      Perusahaan juga menggandeng Intel untuk pemanfaatan teknologi Intel Bridge guna aplikasi Android dapat berjalan secara virtual dengan mulus di Windows 1. Ini berlaku baik perangkat yang berbasis prosesor Intel maupun AMD.
-
-      Di acara peluncuran Windows 11 pada, Microsoft sempat mempraktekkan bagaimana aplikasi TikTok berjalan di komputer Windows 11. TikTok dapat berjalan dengan tampilan serupa di versi mobile-nya.""",
-                                style: TextStyle(
+                                widget.content.newsContent,
+                                style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   wordSpacing: 1,
