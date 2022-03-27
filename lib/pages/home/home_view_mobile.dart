@@ -5,13 +5,11 @@ import 'package:submission_flutter_dasar/pages/details/detail_page.dart';
 import 'package:submission_flutter_dasar/widgets/widgets.dart';
 
 class HomePageMobile extends StatelessWidget {
-  const HomePageMobile({Key? key}) : super(key: key);
+  final String date;
+  const HomePageMobile({Key? key, required this.date}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var timeNow = DateTime.now();
-    var formattedDate = DateFormat('dd-MM-yyyy').format(timeNow);
-
     final tabs = ["Sports", "Tech", "Otomotif", "Lifestyle"];
 
     final imageKeys = [
@@ -40,7 +38,7 @@ class HomePageMobile extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TopAppBar(date: convertToMonthName(formattedDate)),
+              TopAppBar(date: date),
               const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -190,37 +188,4 @@ class HomePageMobile extends StatelessWidget {
       ),
     );
   }
-}
-
-String convertToMonthName(String formattedDate) {
-  var splittedDate = formattedDate.split('-');
-  String convertedMonth = "";
-
-  if (splittedDate[1] == "01") {
-    convertedMonth = "January";
-  } else if (splittedDate[1] == "02") {
-    convertedMonth = "February";
-  } else if (splittedDate[1] == "03") {
-    convertedMonth = "Maret";
-  } else if (splittedDate[1] == "04") {
-    convertedMonth = "April";
-  } else if (splittedDate[1] == "05") {
-    convertedMonth = "Mei";
-  } else if (splittedDate[1] == "06") {
-    convertedMonth = "Juni";
-  } else if (splittedDate[1] == "07") {
-    convertedMonth = "July";
-  } else if (splittedDate[1] == "08") {
-    convertedMonth = "Agustus";
-  } else if (splittedDate[1] == "09") {
-    convertedMonth = "September";
-  } else if (splittedDate[1] == "10") {
-    convertedMonth = "Oktober";
-  } else if (splittedDate[1] == "11") {
-    convertedMonth = "November";
-  } else if (splittedDate[1] == "12") {
-    convertedMonth = "Desember";
-  }
-
-  return "${splittedDate[0]} $convertedMonth, ${splittedDate[2]}";
 }
