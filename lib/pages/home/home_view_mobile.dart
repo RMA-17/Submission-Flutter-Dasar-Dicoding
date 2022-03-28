@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:submission_flutter_dasar/content/news_content.dart';
 import 'package:submission_flutter_dasar/pages/details/detail_page.dart';
 import 'package:submission_flutter_dasar/widgets/widgets.dart';

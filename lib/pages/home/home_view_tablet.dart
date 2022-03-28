@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:submission_flutter_dasar/content/news_content.dart';
+import 'package:submission_flutter_dasar/pages/details/detail_page.dart';
 import 'package:submission_flutter_dasar/widgets/widgets.dart';
 
 class HomePageTablet extends StatelessWidget {
@@ -50,7 +51,7 @@ class HomePageTablet extends StatelessWidget {
                   fontFamily: 'Montserrat',
                   fontSize: 45,
                   color: Color(0xff1D2E5A),
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w900,
                 ),
               ),
               const SizedBox(height: 28),
@@ -59,48 +60,70 @@ class HomePageTablet extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Column(
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                  child: Image.network(
-                                    'https://berita.teknologi.id/uploads/article/1624981261_Windows%2011%20Dapat%20Jalankan%20Applikasi%20Android%20Tanpa%20Emulator%20%28wallpaper%20cave%29.jpg',
-                                  ),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                const SizedBox(height: 18),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                            child: InkWell(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
                                   children: [
-                                    Flexible(
-                                      child: Container(
-                                        child: const Text(
-                                          "Windows 10 bisa jalankan Aplikasi Android tanpa emulator!",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 24,
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xff1D2E5A),
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
+                                    Hero(
+                                      tag: imageKeys[4],
+                                      child: ClipRRect(
+                                        child: Image.network(
+                                          'https://berita.teknologi.id/uploads/article/1624981261_Windows%2011%20Dapat%20Jalankan%20Applikasi%20Android%20Tanpa%20Emulator%20%28wallpaper%20cave%29.jpg',
                                         ),
+                                        borderRadius: BorderRadius.circular(16),
                                       ),
                                     ),
+                                    const SizedBox(height: 18),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: Container(
+                                            child: Hero(
+                                              tag: titleKeys[4],
+                                              child: const Text(
+                                                "Windows 10 bisa jalankan Aplikasi Android tanpa emulator!",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 24,
+                                                  fontFamily: 'Montserrat',
+                                                  color: Color(0xff1D2E5A),
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    ArticleBar(date: date)
                                   ],
                                 ),
-                                const SizedBox(height: 8),
-                                ArticleBar(date: date)
-                              ],
+                              ),
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return DetailPage(
+                                    content: contentTech,
+                                    imageKey: imageKeys[4],
+                                    titleKey: titleKeys[4],
+                                  );
+                                }));
+                              },
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
@@ -116,6 +139,7 @@ class HomePageTablet extends StatelessWidget {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const Divider(
                             thickness: 1,
@@ -133,6 +157,7 @@ class HomePageTablet extends StatelessWidget {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const Divider(
                             thickness: 1,
@@ -150,6 +175,7 @@ class HomePageTablet extends StatelessWidget {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const Divider(
                             thickness: 1,
@@ -167,6 +193,7 @@ class HomePageTablet extends StatelessWidget {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const Divider(
                             thickness: 1,

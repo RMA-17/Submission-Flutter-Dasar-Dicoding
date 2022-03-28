@@ -38,10 +38,6 @@ class _TopAppBarState extends State<TopAppBar> {
             ),
           ],
         ),
-        IconButton(
-          icon: const Icon(CupertinoIcons.moon_circle_fill),
-          onPressed: () {},
-        ),
       ],
     );
   }
@@ -88,7 +84,7 @@ class ArticleBar extends StatelessWidget {
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold,
                   fontSize: 10,
-                  color: Color(0xffB6CBEB),
+                  color: Color.fromARGB(255, 123, 138, 160),
                 ),
               )
             ],
@@ -100,12 +96,12 @@ class ArticleBar extends StatelessWidget {
 }
 
 class MiniNewsBar extends StatelessWidget {
-  const MiniNewsBar(
-      {Key? key,
-      required this.content,
-      required this.imageKey,
-      required this.titleKey})
-      : super(key: key);
+  const MiniNewsBar({
+    Key? key,
+    required this.content,
+    required this.imageKey,
+    required this.titleKey,
+  }) : super(key: key);
 
   final NewsContent content;
   final String imageKey, titleKey;
@@ -118,78 +114,82 @@ class MiniNewsBar extends StatelessWidget {
           Radius.circular(10),
         ),
       ),
-      child: InkWell(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 1,
-              child: Hero(
-                tag: imageKey,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    content.imageUrl,
-                    fit: BoxFit.cover,
+      child: SizedBox(
+        height: 120,
+        child: InkWell(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Hero(
+                  tag: imageKey,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      content.imageUrl,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Hero(
-                      tag: titleKey,
-                      child: Text(
-                        content.newsTitle,
-                        style: const TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Icon(Icons.person, size: 18),
-                        SizedBox(width: 5),
-                        Text(
-                          "Mamang Sumamang",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xff3660A6),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Hero(
+                        tag: titleKey,
+                        child: Text(
+                          content.newsTitle,
+                          style: const TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
-                    )
-                  ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Icon(Icons.person, size: 18),
+                          SizedBox(width: 5),
+                          Text(
+                            "Mamang Sumamang",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xff3660A6),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return DetailPage(
+                  content: content, imageKey: imageKey, titleKey: titleKey);
+            }));
+          },
         ),
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return DetailPage(
-                content: content, imageKey: imageKey, titleKey: titleKey);
-          }));
-        },
       ),
     );
   }
 }
 
 class FavouriteButton extends StatefulWidget {
-  const FavouriteButton({Key? key}) : super(key: key);
+  final Color? color;
+  const FavouriteButton({Key? key, required this.color}) : super(key: key);
 
   @override
   State<FavouriteButton> createState() => _FavouriteButtonState();
@@ -213,7 +213,10 @@ class _FavouriteButtonState extends State<FavouriteButton> {
               CupertinoIcons.heart_fill,
               color: Colors.redAccent,
             )
-          : const Icon(CupertinoIcons.heart),
+          : Icon(
+              CupertinoIcons.heart,
+              color: widget.color,
+            ),
     );
   }
 }

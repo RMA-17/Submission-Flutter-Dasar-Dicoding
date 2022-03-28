@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
     var formattedDate = DateFormat('dd-MM-yyyy').format(timeNow);
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
-        if (constraints.maxWidth <= 800) {
+        if (constraints.maxWidth <= 1120) {
           return HomePageMobile(
             date: convertToMonthName(formattedDate),
           );

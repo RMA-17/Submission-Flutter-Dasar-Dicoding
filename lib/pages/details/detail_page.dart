@@ -24,7 +24,11 @@ class DetailPage extends StatelessWidget {
             titleKey: titleKey,
           );
         } else {
-          return const DetailPageTablet();
+          return DetailPageTablet(
+            content: content,
+            imageKey: imageKey,
+            titleKey: titleKey,
+          );
         }
       }),
     );

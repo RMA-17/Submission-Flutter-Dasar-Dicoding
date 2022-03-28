@@ -6,6 +6,7 @@ import 'package:submission_flutter_dasar/widgets/widgets.dart';
 class DetaiLPageMobile extends StatefulWidget {
   final NewsContent content;
   final String imageKey, titleKey;
+
   const DetaiLPageMobile({
     Key? key,
     required this.content,
@@ -41,7 +42,9 @@ class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
                               },
                               icon: const Icon(CupertinoIcons.back),
                             ),
-                            const FavouriteButton()
+                            const FavouriteButton(
+                              color: Colors.black,
+                            )
                           ],
                         ),
                       ),
