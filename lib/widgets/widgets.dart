@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:submission_flutter_dasar/content/news_content.dart';
 import 'package:submission_flutter_dasar/pages/details/detail_page.dart';
 
@@ -71,6 +70,8 @@ class ArticleBar extends StatelessWidget {
                         color: Color(0xff3660A6),
                       ),
                     ),
+                    SizedBox(width: 8),
+                    FollowButton()
                   ],
                 ),
               ),
@@ -180,6 +181,41 @@ class MiniNewsBar extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class FollowButton extends StatefulWidget {
+  const FollowButton({Key? key}) : super(key: key);
+
+  @override
+  State<FollowButton> createState() => _FollowButtonState();
+}
+
+class _FollowButtonState extends State<FollowButton> {
+  bool _isFollowing = false;
+
+  void setFollowing() {
+    setState(() {
+      _isFollowing = !_isFollowing;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _isFollowing
+        ? TextButton(
+            onPressed: () {
+              setFollowing();
+            },
+            child: const Text("Following"),
+          )
+        : ElevatedButton(
+            onPressed: () {
+              setFollowing();
+            },
+            child: const Text("Follow"),
+            style: ButtonStyle(elevation: MaterialStateProperty.all(0)),
+          );
   }
 }
 
