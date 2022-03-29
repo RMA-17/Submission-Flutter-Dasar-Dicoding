@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:submission_flutter_dasar/content/news_content.dart';
 import 'package:submission_flutter_dasar/widgets/widgets.dart';
 
-class DetaiLPageMobile extends StatefulWidget {
+class DetaiLPageMobile extends StatelessWidget {
   final NewsContent content;
   final String imageKey, titleKey;
 
@@ -14,11 +14,6 @@ class DetaiLPageMobile extends StatefulWidget {
     required this.titleKey,
   }) : super(key: key);
 
-  @override
-  State<DetaiLPageMobile> createState() => _DetaiLPageMobileState();
-}
-
-class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -55,10 +50,10 @@ class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
                     child: Column(
                       children: [
                         Hero(
-                          tag: widget.imageKey,
+                          tag: imageKey,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16),
-                            child: Image.network(widget.content.imageUrl),
+                            child: Image.network(content.imageUrl),
                           ),
                         ),
                       ],
@@ -71,9 +66,9 @@ class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
                       children: [
                         Expanded(
                           child: Hero(
-                            tag: widget.titleKey,
+                            tag: titleKey,
                             child: Text(
-                              widget.content.newsTitle,
+                              content.newsTitle,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -87,7 +82,7 @@ class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
                     ),
                   ),
                   ArticleBar(
-                    date: widget.content.newsDate,
+                    date: content.newsDate,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -97,7 +92,7 @@ class _DetaiLPageMobileState extends State<DetaiLPageMobile> {
                           children: [
                             Expanded(
                               child: Text(
-                                widget.content.newsContent,
+                                content.newsContent,
                                 style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,

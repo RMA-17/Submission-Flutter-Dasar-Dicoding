@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:submission_flutter_dasar/content/news_content.dart';
 import 'package:submission_flutter_dasar/widgets/widgets.dart';
 
-class DetailPageTablet extends StatefulWidget {
+class DetailPageTablet extends StatelessWidget {
   final NewsContent content;
   final String imageKey, titleKey;
 
@@ -14,11 +14,6 @@ class DetailPageTablet extends StatefulWidget {
     required this.titleKey,
   }) : super(key: key);
 
-  @override
-  State<DetailPageTablet> createState() => _DetailPageTabletState();
-}
-
-class _DetailPageTabletState extends State<DetailPageTablet> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -36,12 +31,12 @@ class _DetailPageTabletState extends State<DetailPageTablet> {
                       children: [
                         Expanded(
                           child: Hero(
-                            tag: widget.imageKey,
+                            tag: imageKey,
                             child: ClipRRect(
                               borderRadius: const BorderRadius.vertical(
                                   bottom: Radius.circular(16)),
                               child: Image.network(
-                                widget.content.imageUrl,
+                                content.imageUrl,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -88,9 +83,9 @@ class _DetailPageTabletState extends State<DetailPageTablet> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Hero(
-                                  tag: widget.titleKey,
+                                  tag: titleKey,
                                   child: Text(
-                                    widget.content.newsTitle,
+                                    content.newsTitle,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 24,
@@ -115,14 +110,14 @@ class _DetailPageTabletState extends State<DetailPageTablet> {
                 Expanded(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ArticleBar(date: widget.content.newsDate),
+                  child: ArticleBar(date: content.newsDate),
                 )),
               ],
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                widget.content.newsContent,
+                content.newsContent,
                 style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.normal,

@@ -1,17 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:submission_flutter_dasar/content/news_content.dart';
 import 'package:submission_flutter_dasar/pages/details/detail_page.dart';
 
-class TopAppBar extends StatefulWidget {
+class TopAppBar extends StatelessWidget {
   final String date;
   const TopAppBar({Key? key, required this.date}) : super(key: key);
 
-  @override
-  State<TopAppBar> createState() => _TopAppBarState();
-}
-
-class _TopAppBarState extends State<TopAppBar> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,7 +25,7 @@ class _TopAppBarState extends State<TopAppBar> {
             ),
             const SizedBox(width: 10),
             Text(
-              widget.date,
+              date,
               style: const TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
