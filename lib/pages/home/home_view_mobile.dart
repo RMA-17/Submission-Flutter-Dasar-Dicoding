@@ -113,6 +113,7 @@ class HomePageMobile extends StatelessWidget {
                                             horizontal: 8.0,
                                           ),
                                           child: ArticleBar(
+                                            isInDetail: false,
                                             date: contentTech.newsDate,
                                           ),
                                         )

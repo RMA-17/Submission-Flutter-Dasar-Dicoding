@@ -110,7 +110,10 @@ class DetailPageTablet extends StatelessWidget {
                 Expanded(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ArticleBar(date: content.newsDate),
+                  child: ArticleBar(
+                    date: content.newsDate,
+                    isInDetail: true,
+                  ),
                 )),
               ],
             ),

@@ -82,6 +82,7 @@ class DetaiLPageMobile extends StatelessWidget {
                     ),
                   ),
                   ArticleBar(
+                    isInDetail: true,
                     date: content.newsDate,
                   ),
                   Padding(

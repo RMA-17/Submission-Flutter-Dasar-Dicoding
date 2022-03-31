@@ -106,7 +106,10 @@ class HomePageTablet extends StatelessWidget {
                                       ],
                                     ),
                                     const SizedBox(height: 8),
-                                    ArticleBar(date: date)
+                                    ArticleBar(
+                                      date: date,
+                                      isInDetail: false,
+                                    )
                                   ],
                                 ),
                               ),

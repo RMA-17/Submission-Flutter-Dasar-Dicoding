@@ -40,7 +40,12 @@ class TopAppBar extends StatelessWidget {
 
 class ArticleBar extends StatelessWidget {
   final String date;
-  const ArticleBar({Key? key, required this.date}) : super(key: key);
+  final bool isInDetail;
+  const ArticleBar({
+    Key? key,
+    required this.date,
+    required this.isInDetail,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +58,15 @@ class ArticleBar extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 child: Row(
-                  children: const [
-                    CircleAvatar(
+                  children: [
+                    const CircleAvatar(
                       radius: 15,
                       backgroundImage: NetworkImage(
                         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                       ),
                     ),
-                    SizedBox(width: 8),
-                    Text(
+                    const SizedBox(width: 8),
+                    const Text(
                       "Mamang Sumamang",
                       style: TextStyle(
                         fontFamily: 'Poppins',
@@ -70,8 +75,11 @@ class ArticleBar extends StatelessWidget {
                         color: Color(0xff3660A6),
                       ),
                     ),
-                    SizedBox(width: 8),
-                    FollowButton()
+                    const SizedBox(width: 8),
+                    Visibility(
+                      visible: isInDetail,
+                      child: const FollowButton(),
+                    )
                   ],
                 ),
               ),
@@ -207,14 +215,25 @@ class _FollowButtonState extends State<FollowButton> {
             onPressed: () {
               setFollowing();
             },
-            child: const Text("Following"),
+            child: const Text(
+              "Following",
+              style: TextStyle(fontSize: 9, fontFamily: 'Montserrat'),
+            ),
+            style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all(const Size(64, 32))),
           )
         : ElevatedButton(
             onPressed: () {
               setFollowing();
             },
-            child: const Text("Follow"),
-            style: ButtonStyle(elevation: MaterialStateProperty.all(0)),
+            child: const Text(
+              "Follow",
+              style: TextStyle(fontSize: 9, fontFamily: 'Montserrat'),
+            ),
+            style: ButtonStyle(
+              elevation: MaterialStateProperty.all(0),
+              fixedSize: MaterialStateProperty.all(const Size(64, 32)),
+            ),
           );
   }
 }
